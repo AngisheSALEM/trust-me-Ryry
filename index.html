@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le petit Salem</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <div class="container">
+
+    <div class="containersound">
+        <div class="plate">
+            <div class="black">
+                <div class="border">
+                    <div class="white">
+                        <div class="center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="player">
+            <div class="rect"></div>
+            <div class="circ"></div>
+        </div>
+    </div>
+<br><br>  
+    <h1><i>Peux tu m'accorder un peu de ton temps?</i></h1>
+    <div class="slideshow">
+        
+            
+             <img src="img/img reel1.jpg" alt="" class="image" id="photo" >
+            
+          
+          
+    </div>
+    <br><br>
+    <!-- <div class="message" id="message">Tu es la lumière de ma vie ✨</div> -->
+    <p>Ryry , je ne te demande pas de me pardonner <br> et de tourner la page sur ce que j'ai fait <br>
+        Ryry je te demande de me faire confiance , <br>
+        je t'ai déçu mais je suis capable d'apprendre de mes erreurs,<br>
+        Je veux que tu saches que j'ai pas changé , je suis toujours ton petit Salem . <br>
+        Je tiens énormément à toi et <br> je me sentirais encore plus bête si je devais perdre la personne qui compte réellement sans me chercher à faire mieux <br> 
+        c'est moi le problème et j'en suis conscient  <br>, plus jamais je referais ce que j'ai fait , c'est toi qui compte <br>
+        Tu es mon veritable trésor , ma lionne
+</p> 
+<audio src="Mitski_-_My_Love_Mine_All_Mine__Official_Lyric_Video_(256k).mp3" autoplay loop controls type="audio/mpeg" id="backgroundAudio" style="display: none;"></audio>
+    
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('backgroundAudio');
+    
+    // 1. Essayez de lancer automatiquement (peut échouer)
+    audio.play().catch(e => {
+      console.log("Autoplay bloqué. Attente d'une interaction...");
+      
+      // 2. Active au premier clic/scroll/touch
+      const unlockAudio = () => {
+        audio.play().then(() => {
+          document.removeEventListener('click', unlockAudio);
+          document.removeEventListener('scroll', unlockAudio);
+        });
+      };
+      
+      document.addEventListener('click', unlockAudio, { once: true });
+      document.addEventListener('scroll', unlockAudio, { once: true });
+    });
+  });
+    const photos = [
+  'img/img reel1.jpg',
+  'img/image reel 2.jpg',
+  'img/souv1.jpg',
+  'img/souv2.jpg',
+  'img/souv3.jpg',
+  'img/souv4.jpg',
+  'img/souv5.jpg',
+  'img/souv6.jpg',
+  'img/souv7.jpg',
+];
+
+const messages = [
+  'Tu es la lumière de ma vie ✨',
+  'Chaque moment avec toi est un trésor 💎',
+  'Je t’aime plus que les mots ne peuvent le dire ❤️'
+];
+
+let photoIndex = 0;
+let messageIndex = 0;
+
+const photoElement = document.getElementById('photo');
+const messageElement = document.getElementById('message');
+
+function changePhoto() {
+    photoElement.style.opacity = 0;
+    setTimeout(() => {
+      photoIndex = (photoIndex + 1) % photos.length;
+      photoElement.src = photos[photoIndex];
+      photoElement.style.opacity = 1;
+    }, 1000);
+  }
+  
+
+function changeMessage() {
+  messageIndex = (messageIndex + 1) % messages.length;
+  messageElement.style.opacity = 0;
+  setTimeout(() => {
+    messageElement.textContent = messages[messageIndex];
+    messageElement.style.opacity = 1;
+  }, 1000);
+}
+
+setInterval(changePhoto, 5000); // Change photo every 5 seconds
+setInterval(changeMessage, 7000); // Change message every 7 seconds
+
+</script>
+</html>
